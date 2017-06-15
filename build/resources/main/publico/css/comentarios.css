@@ -1,0 +1,11 @@
+.comment-header {
+    border: 1px solid #dddddd;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.comment{
+    border: 1px solid #dddddd;
+    border-radius: 25px;
+    padding: 10px;
+}
