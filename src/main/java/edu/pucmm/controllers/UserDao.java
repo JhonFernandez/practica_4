@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Jhon on 7/6/2017.
  */
-public class UserDao  extends GestionDb<User> {
+public class UserDao  extends GestionDb<User,String> {
     private static UserDao instance;
 
     private UserDao() {

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by vacax on 03/06/16.
  */
-public class GestionDb<T> {
+public class GestionDb<T,I> {
 
     private static EntityManagerFactory emf;
     private Class<T> claseEntidad;
@@ -65,10 +65,13 @@ public class GestionDb<T> {
      *
      * @param entidad
      */
-    public void create(T entidad) throws IllegalArgumentException,ConstraintViolationException{
+    public void create(T entidad) throws Exception{
         EntityManager em = getEntityManager();
 
-        try {
+        if (entidad == null){
+            throw  new Exception("Se envio una entidad (null)");
+        }
+        /*try {
             if (em.find(claseEntidad, getValorCampo(entidad)) != null) {
                 System.out.println("La entidad a guardar existe, no creada.");
                 return;
@@ -76,19 +79,13 @@ public class GestionDb<T> {
         }catch (IllegalArgumentException ie){
             //
             System.out.println("Parametro ilegal.");
-        }
+        }*/
 
         em.getTransaction().begin();
         try {
             em.persist(entidad);
             em.getTransaction().commit();
 
-        }catch (IllegalArgumentException ex){
-            em.getTransaction().rollback();
-            throw  ex;
-        }catch (ConstraintViolationException ex){
-            em.getTransaction().rollback();
-            throw  ex;
         }catch (Exception ex){
             em.getTransaction().rollback();
             throw  ex;
@@ -101,7 +98,7 @@ public class GestionDb<T> {
      *
      * @param entidad
      */
-    public void edit(T entidad){
+    public void edit(T entidad) throws Exception{
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         try {
@@ -119,7 +116,7 @@ public class GestionDb<T> {
      *
      * @param entidadId
      */
-    public void destroy(Object  entidadId){
+    public void destroy(I  entidadId) throws Exception{
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         try {
@@ -139,7 +136,7 @@ public class GestionDb<T> {
      * @param id
      * @return
      */
-    public T find(Object id) {
+    public T find(I id){
         EntityManager em = getEntityManager();
         try{
             return em.find(claseEntidad, id);

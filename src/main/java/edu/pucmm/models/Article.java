@@ -16,6 +16,7 @@ public class Article implements Serializable {
     private Integer id;
     @Column(unique=true)
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String body;
     private Date releaseDate;
 

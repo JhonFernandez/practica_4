@@ -10,17 +10,19 @@
     <h1>Create New Article: </h1>
     <form method="post" action="/article/create">
         <div class="form-group">
-            <label for="article-id">Id: </label>
-            <input type="text" class="form-control" id="article-id" name="article-id">
-        </div>
-        <div class="form-group">
             <label for="title">Title: </label>
             <input type="text" class="form-control" id="title" name="title">
         </div>
-        <div class="form-group">
-            <label for="author">Author:</label>
-            <input class="form-control" id="author" name="author">
-        </div>
+        <#--<div class="form-group">
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <select class="form-control"  name="author" size="1">
+                <#list authorList as author>
+                    <option value="${author.userName}">${author.userName}</option>
+                </#list>
+                </select>
+            </div>
+        </div>-->
         <div class="form-group">
             <label for="body">Content:</label>
             <textarea class="form-control" rows="5" id="body" name="body"></textarea>

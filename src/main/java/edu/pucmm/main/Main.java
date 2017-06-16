@@ -6,12 +6,9 @@ import edu.pucmm.services.BootStrapServices;
 import freemarker.template.Configuration;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
-
-
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static spark.Spark.*;
 
@@ -24,10 +21,28 @@ public class Main {
     private static FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
     public static void main(String[] args) {
+
         BootStrapServices.getInstancia().init();
 
-        //initSpark();
-        
+        System.out.println(CommentDao.getInstance().findAll());
+        /*try {
+            CommentDao.getInstance().create(new Comment("un comentario genial",
+                    ArticleDao.getInstance().find(164),UserDao.getInstance().findAll().get(0)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            UserDao.getInstance().create(new User("master","marlon","1234",true,true));
+            UserDao.getInstance().create(new User("vladi","vladi","1234",false,true));
+            UserDao.getInstance().create(new User("veronica","veronica","1234",false,true));
+            UserDao.getInstance().create(new User("jhon","jhon","1234",false,false));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        initSpark();
+
         /*User user = new User();
         user.setAdmin(true);
         user.setAuthor(true);
@@ -37,7 +52,8 @@ public class Main {
 
         UserDao.getInstance().crear(user);
         */
-        Tag tag = new Tag("comida");
+
+        /*Tag tag = new Tag("comida");
         Tag tag1 = new Tag("comida1");
         User user = new User("xpaladix","marlon","1234",true,true);
         Article article = new Article("titulo","cuerpo",Date.valueOf(LocalDate.now()),user);
@@ -45,19 +61,16 @@ public class Main {
         TagDao.getInstance().create(tag);
         TagDao.getInstance().create(tag1);
         UserDao.getInstance().create(user);
-
-
+            
 
 
         ArrayList<Tag> tags = new ArrayList<>();
+        tags.add(tag);
+
 
         article.setTagList(tags);
-        try{
+        
             ArticleDao.getInstance().create(article);
-        }catch (Exception e){
-
-            System.out.println(e.toString());
-        }
 
         System.out.println(ArticleDao.getInstance().findAll());
         System.out.println(UserDao.getInstance().findAll());
@@ -65,10 +78,11 @@ public class Main {
         //System.out.println(ArticleDao.getInstance().getInstance().find(1).getTagList());
         System.out.println(TagDao.getInstance().find(1).getArticleList());
         System.out.println(ArticleDao.getInstance().find(1).getTagList());
-        System.out.println(TagDao.getInstance().findAll());
+        System.out.println(TagDao.getInstance().findAll());*/
+
     }
 
-/*
+
     private static void initSpark() {
 
         port(getHerokuAssignedPort());
@@ -76,7 +90,7 @@ public class Main {
         //staticFiles.location("/META-INF/resources"); //para utilizar los WebJars.
         staticFileLocation("/publico");
         configuration.setClassForTemplateLoading(Main.class, "/templates");
-        
+
 
         get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -116,15 +130,20 @@ public class Main {
 
     public static void articlePages() {
         path("/article", () -> {
+
             articleFilter();
             commentPages();
             get("/all", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
                 List<Article> articulos = ArticleDao.getInstance().findAll();
-                articulos.sort((o1, o2) -> o1.getReleaseDate().compareTo(o2.getReleaseDate()));
+                if (articulos != null) {
+                    Collections.reverse(articulos);
+                    attributes.put("articles", articulos);
+                } else {
+                    attributes.put("articles", new ArrayList<Article>());
+                }
                 attributes.put("user", request.session().attribute("user"));
                 attributes.put("hostUrl", request.host());
-                attributes.put("articles", articulos);
 
                 return new ModelAndView(attributes, "article-all.ftl");
             }, freeMarkerEngine);
@@ -132,37 +151,39 @@ public class Main {
             get("/create", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
                 attributes.put("hostUrl", request.host());
+                attributes.put("authorList", UserDao.getInstance().findAll());
                 return new ModelAndView(attributes, "article-create.ftl");
             }, freeMarkerEngine);
 
             post("/create", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
                 ArrayList<Tag> tags = new ArrayList<>();
-                System.out.println(1);
-                try {
-                    for (String tagName : request.queryParams("tags").split(",")) {
-                        List<Tag> tagsAux = TagDao.getInstance().findAll().stream()
-                                .filter(tg -> tg.getName().equalsIgnoreCase(tagName))
-                                .collect(Collectors.toList());
-                        if (tagsAux != null) {
-                            tags.add(tagsAux.get(0));
-                        }
 
+                for (String tagName : request.queryParams("tags").split(",")) {
+                    Tag tag = TagDao.getInstance().findByName(tagName);
+                    if (tag != null) {
+                        tags.add(tag);
+                    } else {
+                        TagDao.getInstance().create(new Tag(tagName));
+                        tags.add(TagDao.getInstance().findByName(tagName));
                     }
-                    System.out.println(2);
-                    ArticleDao.getInstance().create(new Article(
-                            request.queryParams("title"),
-                            request.queryParams("body"),
-                            Date.valueOf(LocalDate.now()),
-                            UserDao.getInstance().find(request.queryParams("author")),
-                            tags
-                    ));
-
-
-                    response.redirect("/article/all");
-                } catch (NoSuchElementException e) {
-                    response.redirect("/invalid-parameter.html");
                 }
+                Article article = new Article(
+                        request.queryParams("title"),
+                        request.queryParams("body"),
+                        Date.valueOf(LocalDate.now()),
+                        UserDao.getInstance().find(request.session().attribute("user")),
+                        tags
+                );
+                try {
+                    ArticleDao.getInstance().create(article);
+                } catch (Exception e) {
+                    response.redirect("/article/all");
+                    System.out.println("Trato de duplicar un articulo");
+                }
+
+                response.redirect("/article/all");
+
 
                 return new ModelAndView(attributes, "article-all.ftl");
             }, freeMarkerEngine);
@@ -190,28 +211,22 @@ public class Main {
             post("/update/:articleId", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
 
-                User user = UserDao.getInstance().find(request.session().attribute("user"));
-                User articleAuthor = UserDao.getInstance().find(request.queryParams("author"));
-                if (user.getAdmin() || user.getUserName().equals(articleAuthor.getUserName())) {
-                    ArticleDao.getInstance().edit(new Article(
-                            Integer.parseInt(request.params("articleId")),
-                            request.queryParams("title"),
-                            articleAuthor,
-                            request.queryParams("body"),
-                            Date.valueOf(LocalDate.now())
-                    ));
 
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.queryParams("articleId")));
+                article.setBody(request.queryParams("body"));
+                article.setTitle(request.queryParams("title"));
+                article.setReleaseDate(Date.valueOf(LocalDate.now()));
 
-                    ArticleTagDao.getInstance().findAll().stream()
-                            .filter(articleTag -> articleTag.getIdArticle().equals(Integer.parseInt(request.params("articleId"))))
-                            .forEach(articleTag -> ArticleTagDao.getInstance().destroy(articleTag));
-
-                    if (request.queryParamsValues("tags[]") != null) {
-                        for (String tagId : request.queryParamsValues("tags[]")) {
-                            ArticleTagDao.getInstance().create(new ArticleTag(Integer.parseInt(request.queryParams("articleId")), Integer.parseInt(tagId)));
-                        }
+                ArrayList<Tag> tags = new ArrayList<>();
+                if (request.queryParamsValues("tags[]") != null) {
+                    for (String tagId : request.queryParamsValues("tags[]")) {
+                        tags.add(TagDao.getInstance().find(Integer.parseInt(tagId)));
                     }
                 }
+
+                article.setTagList(tags);
+
+                ArticleDao.getInstance().edit(article);
 
                 response.redirect("/article/view/" + request.queryParams("articleId"));
                 return new ModelAndView(attributes, "article-update.ftl");
@@ -219,7 +234,27 @@ public class Main {
 
             get("/delete/:articleId", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
-                ArticleDao.getInstance().getInstance().destroy(ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))));
+                String userName = request.session().attribute("user");
+                if (userName != null) {
+
+                    Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                    CommentDao.getInstance().findAll().stream()
+                            .filter(c -> c.getArticle().getId().equals(article.getId()))
+                            .forEach(c -> {
+                                try {
+                                    CommentDao.getInstance().destroy(c.getId());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                    try {
+                        ArticleDao.getInstance().destroy(article.getId());
+                    } catch (Exception e) {
+                        System.out.println("problemas");
+                        System.out.println(e.toString());
+                    }
+                }
+
                 response.redirect("/article/all");
                 return new ModelAndView(attributes, "article-all.ftl");
             }, freeMarkerEngine);
@@ -229,25 +264,37 @@ public class Main {
 
     public static void commentPages() {
         path("/comment", () -> {
+            commentFilter();
             post("/create/:articleId", (request, response) -> {
+                User user = UserDao.getInstance().find(request.session().attribute("user"));
                 Map<String, Object> attributes = new HashMap<>();
-                CommentDao.getInstance().create(new Comment(++commentCount,
-                        ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))),
-                        request.queryParams("commentBody"),
-                        UserDao.getInstance().find(request.session().attribute("user"))));
 
+                if (user != null && (user.getAdmin() || user.getAuthor())){
+                    CommentDao.getInstance().create(new Comment(
+                            request.queryParams("commentBody"),
+                            ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))),
+                            user));
+
+                    System.out.println(CommentDao.getInstance().findAll());
+                }
                 attributes.put("article", ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))));
+                attributes.put("hostUrl", request.host());
+                return new ModelAndView(attributes, "article-view.ftl");
 
-                return new ModelAndView(attributes, "article-read.ftl");
             }, freeMarkerEngine);
 
 
-            get("/delete/:articleId", (request, response) -> {
+            get("/delete/:articleId/:commentId", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
-                CommentDao.getInstance().destroy(CommentDao.getInstance().find(Integer.parseInt(request.params("articleId"))));
+                User user = UserDao.getInstance().find(request.session().attribute("user"));
+                if (user != null && (user.getAdmin() || user.getAuthor())){
+                    CommentDao.getInstance().destroy(Integer.parseInt(request.params("commentId")));
+                }
 
-                response.redirect("/article/all");
-                return new ModelAndView(attributes, "article-read.ftl");
+                attributes.put("article", ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))));
+                attributes.put("hostUrl", request.host());
+
+                return new ModelAndView(attributes, "article-view.ftl");
             }, freeMarkerEngine);
 
         });
@@ -257,25 +304,91 @@ public class Main {
         before("/create", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             String userName = request.session().attribute("user");
+            User user = UserDao.getInstance().find(userName);
             boolean allowed = false;
 
-            if (userName != null) {
-                allowed = UserDao.getInstance().find(userName).getAuthor();
+            if (user != null) {
+                allowed = user.getAuthor() || user.getAdmin();
             }
             if (!allowed) {
                 response.redirect("/login");
             }
         });
 
-        before("/update", (request, response) -> {
+        before("/update/:articleId", (request, response) -> {
             String userName = request.session().attribute("user");
-            boolean allowed = false;
             if (userName != null) {
-                allowed = UserDao.getInstance().find(userName).getAuthor();
+                User user = UserDao.getInstance().find(userName);
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                if (!user.getAdmin()) {
+                    if (user.getAuthor()) {
+                        if (!article.getAuthor().equals(user)) {
+                            response.redirect("/login");
+                        }
+                    } else {
+                        response.redirect("/login");
+                    }
+                }
+            } else {
+                response.redirect("/login");
+            }
+
+        });
+
+        before("/delete/:articleId", (request, response) -> {
+            String userName = request.session().attribute("user");
+            if (userName != null) {
+                User user = UserDao.getInstance().find(userName);
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                if (!user.getAdmin()) {
+                    if (user.getAuthor()) {
+                        if (!article.getAuthor().equals(user)) {
+                            response.redirect("/login");
+                        }
+                    } else {
+                        response.redirect("/login");
+                    }
+                }
+            } else {
+                response.redirect("/login");
+            }
+
+        });
+    }
+
+    public static void commentFilter() {
+        before("/create/:articleId", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            String userName = request.session().attribute("user");
+            User user = UserDao.getInstance().find(userName);
+            boolean allowed = false;
+
+            if (user != null) {
+                allowed = user.getAuthor() || user.getAdmin();
             }
             if (!allowed) {
                 response.redirect("/login");
             }
+        });
+
+        before("/delete/:articleId/:commentId", (request, response) -> {
+            String userName = request.session().attribute("user");
+            if (userName != null) {
+                User user = UserDao.getInstance().find(userName);
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                if (!user.getAdmin()) {
+                    if (user.getAuthor()) {
+                        if (!article.getAuthor().equals(user)) {
+                            response.redirect("/login");
+                        }
+                    } else {
+                        response.redirect("/login");
+                    }
+                }
+            } else {
+                response.redirect("/login");
+            }
+
         });
     }
 
@@ -287,6 +400,5 @@ public class Main {
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 
-*/
 
 }

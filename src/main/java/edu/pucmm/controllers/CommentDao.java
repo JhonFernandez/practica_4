@@ -6,7 +6,7 @@ import edu.pucmm.services.GestionDb;
 /**
  * Created by Jhon on 7/6/2017.
  */
-public class CommentDao extends GestionDb<Comment> {
+public class CommentDao extends GestionDb<Comment,Integer> {
     private static CommentDao instance;
 
     private CommentDao() {

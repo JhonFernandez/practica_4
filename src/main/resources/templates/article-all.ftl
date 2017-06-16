@@ -33,7 +33,7 @@
                     <a href="/article/create">New Article</a>
                 </li>
                 <li>
-                    <h2 style="border: 1px solid #999999">user:<a href="" style="color: #999999">${user!"Usted no esta logeado"}</a></h2>
+                    <h2 style="border: 1px solid #999999">user:<a href="/login" style="color: #999999">${user!"Usted no esta logeado"}</a></h2>
                 </li>
             </ul>
         </div>
@@ -51,33 +51,39 @@
         <div class="col-md-8">
 
             <h1 class="page-header">
-                Articulas
-                <small>By Jaime and Jhon</small>
+                Articles
+                <small>By Jhon</small>
             </h1>
 
             <br>
-            <#list articles as article >
-                <h2>${article.title}</h2>
-                <p class="lead">by ${article.author.userName}</p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August ${article.releaseDate}</p>
-                <hr>
-                <#if article.body?length < 70 >
-                    <p class="articleBody">${article.body}...</p>
-                <#else>
-                    <p class="articleBody">${article.body?substring(0,70)}...</p>
-                </#if>
-                <a class="btn btn-primary" href="/article/view/${article.id}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                <#if article.tagList??>
-                <#list article.tagList>
-                <ul>
-                    <#items as tag>
-                        <span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></h3>
-                    </#items>
-                </ul>
+            <#if articles??>
+                <#list articles as article >
+                    <h2>${article.title}</h2>
+                    <p class="lead">by ${article.author.userName}</p>
+                    <p><span class="glyphicon glyphicon-time"></span> Posted on August ${article.releaseDate}</p>
+                    <hr>
+                    <#if article.body?length < 70 >
+                        <p class="articleBody">${article.body}...</p>
+                    <#else>
+                        <p class="articleBody">${article.body?substring(0,70)}...</p>
+                    </#if>
+                    <a class="btn btn-primary" href="/article/view/${article.id}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                    <#if article.tagList??>
+                        <#list article.tagList>
+                        <br>
+                        <h5 style="display: inline;width: auto">tags: </h5>
+                            <ul style="display: inline">
+                                <#items as tag>
+                                    <span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></h3>
+                                </#items>
+                            </ul>
+                        </#list>
+                    </#if >
+                    <hr>
                 </#list>
-                </#if >
-                <hr>
-            </#list>
+            </#if>
+
 
 
 

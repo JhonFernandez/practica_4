@@ -6,7 +6,7 @@ import edu.pucmm.services.GestionDb;
 /**
  * Created by Jhon on 7/6/2017.
  */
-public class ArticleDao extends GestionDb<Article> {
+public class ArticleDao extends GestionDb<Article,Integer> {
 
     private static ArticleDao instance;
 

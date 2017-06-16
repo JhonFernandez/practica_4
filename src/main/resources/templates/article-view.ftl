@@ -18,7 +18,8 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -42,9 +43,9 @@
 
                 </li>
 
-                    <li>
-                        <h2 style="border: 1px solid #999999">user:<a href="" style="color: #999999">${user!"Usted no esta logeado"}</a></h2>
-                    </li>
+                <li>
+                    <h2 style="border: 1px solid #999999">user:<a href="/login" style="color: #999999">${user!"Usted no esta logeado"}</a></h2>
+                </li>
 
 
             </ul>
@@ -63,21 +64,20 @@
         <div class="col-md-8">
 
             <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
+                ${article.title}
+                <br>
+                <small>by ${article.author.userName} &nbsp&nbsp&nbsp&nbsp&nbsp</small>
+                    <a href="http://${hostUrl!"locahost:4567"}/article/update/${article.id}" class="btn btn-info">Edit</a>
+                    <a href="http://${hostUrl!"locahost:4567"}/article/delete/${article.id}" class="btn btn-danger">Delete</a>
             </h1>
-
             <br>
-
-            <h2>${article.title}</h2>
-            <a href="http://${hostUrl}/article/update/${article.id}">Edit</a>
-            <p class="lead">by ${article.author.name}</p>
+            <p>${article.body}</p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on August ${article.releaseDate}</p>
             <hr>
-            <p>${article.body}</p>
             <#if article.tagList??>
                 <#list article.tagList>
-                    <ul>
+                    <h5 style="display: inline;width: auto">tags: </h5>
+                    <ul style="display: inline">
                         <#items as tag>
                             <span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></h3>
                         </#items>
@@ -85,21 +85,22 @@
                 </#list>
             </#if >
             <hr>
-
-                <div class="comment-header">
-                    <h3>Comments:</h3>
-                    <hr>
-                    <#list article.commentList as comment>
-                        <div class="comment">
-                            <div>
-                                <h4>${comment.author.name}</h4>
-                                <hr>
-                                <p>${comment.body}</p>
-                                <a href="http://${hostUrl}/article/comment/delete/${comment.id}"><button class = "button">Delete</button></a>
-                            </div>
-                        </div>
-                    </#list>
+            <div class="comment-header">
+                <h3>Comments:</h3>
+                <hr>
+            <#list article.commentList as comment>
+                <div class="comment">
+                    <div>
+                        <h4>${comment.author.userName}</h4>
+                        <hr>
+                        <p>${comment.body}</p>
+                        <a href="http://${hostUrl!"localhost:4567"}/article/comment/delete/${comment.article.id}/${comment.id}">
+                            <button class="button">Delete</button>
+                        </a>
+                    </div>
                 </div>
+            </#list>
+            </div>
 
 
             <form method="post" action="/article/comment/create/${article.id}">
