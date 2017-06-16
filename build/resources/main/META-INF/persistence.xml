@@ -9,6 +9,7 @@
         <class>edu.pucmm.models.Comment</class>
         <class>edu.pucmm.models.Tag</class>
         <class>edu.pucmm.models.User</class>
+        <class>edu.pucmm.models.Valoracion</class>
         <properties>
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />-->
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test" />

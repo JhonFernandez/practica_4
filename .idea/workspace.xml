@@ -2,24 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27113e25-eb92-463f-893b-b1e79e802d5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ValoracionDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/main/Main.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Article.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Article.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Comment.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Comment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Tag.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Tag.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/main/Main.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/controllers/ArticleDao.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/controllers/ArticleDao.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/User.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/article-all.ftl" afterPath="$PROJECT_DIR$/build/resources/main/templates/article-all.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/article-create.ftl" afterPath="$PROJECT_DIR$/build/resources/main/templates/article-create.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/article-view.ftl" afterPath="$PROJECT_DIR$/build/resources/main/templates/article-view.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/User.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-create.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-create.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,7 +24,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/practica_4$Main.coverage" NAME="Main Coverage Results" MODIFIED="1497613822623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/practica_4$Main.coverage" NAME="Main Coverage Results" MODIFIED="1497623201954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>edu.pucmm.main.*</FILTER>
     </SUITE>
   </component>
@@ -77,25 +68,38 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="398" column="5" lean-forward="false" selection-start-line="398" selection-start-column="5" selection-end-line="398" selection-end-column="5" />
+            <state relative-caret-position="92">
+              <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#loginPages#0;class#Main#0" expanded="false" />
-                <element signature="e#6653#6970#0" expanded="false" />
-                <element signature="e#7020#8374#0" expanded="false" />
-                <element signature="e#8432#9001#0" expanded="false" />
-                <element signature="e#9061#9497#0" expanded="false" />
-                <element signature="e#9558#10573#0" expanded="false" />
-                <element signature="e#10633#12473#0" expanded="false" />
+                <element signature="method#articlePages#0;class#Main#0" expanded="false" />
+                <element signature="e#6682#6999#0" expanded="false" />
+                <element signature="e#7049#8403#0" expanded="false" />
+                <element signature="e#8461#9030#0" expanded="false" />
+                <element signature="e#9090#9526#0" expanded="false" />
+                <element signature="e#9587#10602#0" expanded="false" />
                 <element signature="method#valoracion#0;class#Main#0" expanded="false" />
+                <element signature="e#14190#16209#0" expanded="false" />
+                <element signature="e#16297#18184#0" expanded="false" />
                 <element signature="method#valoracionFilter#0;class#Main#0" expanded="false" />
                 <element signature="method#tagPages#0;class#Main#0" expanded="false" />
                 <element signature="method#commentPages#0;class#Main#0" expanded="false" />
                 <element signature="method#articleFilter#0;class#Main#0" expanded="false" />
                 <element signature="method#commentFilter#0;class#Main#0" expanded="false" />
+                <element signature="e#26519#26978#0" expanded="false" />
                 <element signature="method#getHerokuAssignedPort#0;class#Main#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article-view.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="81" column="149" lean-forward="false" selection-start-line="81" selection-start-column="149" selection-end-line="81" selection-end-column="149" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +107,7 @@
       <file leaf-file-name="ValoracionDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ValoracionDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
+            <state relative-caret-position="390">
               <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -125,9 +129,16 @@
       <file leaf-file-name="Valoracion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="25" column="67" lean-forward="false" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
-              <folding />
+            <state relative-caret-position="22">
+              <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#839#840#0" expanded="true" />
+                <element signature="e#864#865#0" expanded="true" />
+                <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#977#978#0" expanded="true" />
+                <element signature="e#1015#1016#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,10 +146,13 @@
       <file leaf-file-name="Comment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="138">
+              <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1128#1129#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+                <element signature="e#1242#1243#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,8 +161,8 @@
       <file leaf-file-name="article-all-tag.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="93" column="43" lean-forward="false" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+            <state relative-caret-position="275">
+              <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="84" selection-end-column="152" />
               <folding />
             </state>
           </provider>
@@ -157,8 +171,8 @@
       <file leaf-file-name="article-all.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="107" column="50" lean-forward="false" selection-start-line="107" selection-start-column="50" selection-end-line="107" selection-end-column="50" />
+            <state relative-caret-position="221">
+              <caret line="101" column="157" lean-forward="true" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="157" />
               <folding />
             </state>
           </provider>
@@ -167,21 +181,11 @@
       <file leaf-file-name="Article.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="113" column="46" lean-forward="false" selection-start-line="113" selection-start-column="15" selection-end-line="113" selection-end-column="46" />
+            <state relative-caret-position="482">
+              <caret line="119" column="9" lean-forward="false" selection-start-line="113" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tag.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Tag.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -604,20 +608,20 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/CommentDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Tag.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/TagDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/services/GestionDb.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/article-create.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/article-update.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ValoracionDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" />
       </list>
     </option>
@@ -1368,7 +1372,7 @@
       <workItem from="1497383503545" duration="1939000" />
       <workItem from="1497480904872" duration="25594000" />
       <workItem from="1497562954032" duration="2595000" />
-      <workItem from="1497566354765" duration="30054000" />
+      <workItem from="1497566354765" duration="33001000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Acapites del 7 al 10&quot;">
       <created>1497590757500</created>
@@ -1377,11 +1381,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497590757500</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;Acapites del 8 al 9.5 (solo falta los likes y dislikes a los comentarios)&quot;">
+      <created>1497619704814</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1497619704814</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104127000" />
+    <option name="totallyTimeSpent" value="107074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1405,7 +1416,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2752137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26495728" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.032526474" sideWeight="0.509434" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1464,11 +1475,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Acapites del 7 al 10&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Acapites del 7 al 10&quot;" />
+    <MESSAGE value="&quot;Acapites del 8 al 9.5 (solo falta los likes y dislikes a los comentarios)&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Acapites del 8 al 9.5 (solo falta los likes y dislikes a los comentarios)&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="33" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1650,18 +1662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="117" column="43" lean-forward="false" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#h2#0;n#li#4;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-create.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -1721,45 +1721,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/CommentDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="93" column="43" lean-forward="false" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="25" column="67" lean-forward="false" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1771,9 +1737,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/CommentDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="84" selection-end-column="152" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="55" column="47" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ValoracionDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="390">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1781,10 +1776,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#864#865#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#977#978#0" expanded="true" />
+            <element signature="e#1015#1016#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="113" column="46" lean-forward="false" selection-start-line="113" selection-start-column="15" selection-end-line="113" selection-end-column="46" />
+        <state relative-caret-position="482">
+          <caret line="119" column="9" lean-forward="false" selection-start-line="113" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1793,31 +1803,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="107" column="50" lean-forward="false" selection-start-line="107" selection-start-column="50" selection-end-line="107" selection-end-column="50" />
+        <state relative-caret-position="221">
+          <caret line="101" column="157" lean-forward="true" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="157" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="81" column="149" lean-forward="false" selection-start-line="81" selection-start-column="149" selection-end-line="81" selection-end-column="149" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="398" column="5" lean-forward="false" selection-start-line="398" selection-start-column="5" selection-end-line="398" selection-end-column="5" />
+        <state relative-caret-position="92">
+          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#loginPages#0;class#Main#0" expanded="false" />
-            <element signature="e#6653#6970#0" expanded="false" />
-            <element signature="e#7020#8374#0" expanded="false" />
-            <element signature="e#8432#9001#0" expanded="false" />
-            <element signature="e#9061#9497#0" expanded="false" />
-            <element signature="e#9558#10573#0" expanded="false" />
-            <element signature="e#10633#12473#0" expanded="false" />
+            <element signature="method#articlePages#0;class#Main#0" expanded="false" />
+            <element signature="e#6682#6999#0" expanded="false" />
+            <element signature="e#7049#8403#0" expanded="false" />
+            <element signature="e#8461#9030#0" expanded="false" />
+            <element signature="e#9090#9526#0" expanded="false" />
+            <element signature="e#9587#10602#0" expanded="false" />
             <element signature="method#valoracion#0;class#Main#0" expanded="false" />
+            <element signature="e#14190#16209#0" expanded="false" />
+            <element signature="e#16297#18184#0" expanded="false" />
             <element signature="method#valoracionFilter#0;class#Main#0" expanded="false" />
             <element signature="method#tagPages#0;class#Main#0" expanded="false" />
             <element signature="method#commentPages#0;class#Main#0" expanded="false" />
             <element signature="method#articleFilter#0;class#Main#0" expanded="false" />
             <element signature="method#commentFilter#0;class#Main#0" expanded="false" />
+            <element signature="e#26519#26978#0" expanded="false" />
             <element signature="method#getHerokuAssignedPort#0;class#Main#0" expanded="false" />
           </folding>
         </state>

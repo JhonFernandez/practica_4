@@ -79,11 +79,12 @@
                     <h5 style="display: inline;width: auto">tags: </h5>
                     <ul style="display: inline">
                         <#items as tag>
-                            <span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></h3>
+                            <a href="/article/all/tag/${tag.name}"><span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></a></h3>
                         </#items>
                     </ul>
                 </#list>
             </#if >
+
             <hr>
             <div class="comment-header">
                 <h3>Comments:</h3>
@@ -94,6 +95,8 @@
                         <h4>${comment.author.userName}</h4>
                         <hr>
                         <p>${comment.body}</p>
+                        <a href="/article/valoracion/1/comment/${comment.id}"><span class="glyphicon glyphicon-thumbs-up">${comment.CountValoracion(1)}</span></a>
+                        <a href="/article/valoracion/0/comment/${comment.id}"><span class="glyphicon glyphicon-thumbs-down">${comment.CountValoracion(0)}</span></a>
                         <a href="http://${hostUrl!"localhost:4567"}/article/comment/delete/${comment.article.id}/${comment.id}">
                             <button class="button">Delete</button>
                         </a>

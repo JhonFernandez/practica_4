@@ -81,6 +81,8 @@
                             </ul>
                         </#list>
                     </#if >
+                    <a href="/article/valoracion/1/${article.id}"><span class="glyphicon glyphicon-thumbs-up">${article.CountValoracion(1)}</span></a>
+                    <a href="/article/valoracion/0/${article.id}"><span class="glyphicon glyphicon-thumbs-down">${article.CountValoracion(0)}</span></a>
                     <hr>
                 </#list>
             </#if>

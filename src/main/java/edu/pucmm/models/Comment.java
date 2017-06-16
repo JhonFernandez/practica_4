@@ -2,6 +2,7 @@ package edu.pucmm.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Jhon on 7/6/2017.
@@ -19,6 +20,9 @@ public class Comment implements Serializable {
 
     @ManyToOne
     private User author;
+
+    @OneToMany(mappedBy = "comment", fetch = FetchType.EAGER)
+    private List<Valoracion> valoraciones;
 
     public Comment() {
     }
@@ -48,6 +52,25 @@ public class Comment implements Serializable {
     public User getAuthor() {
         return author;
     }
+
+    public List<Valoracion> getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(List<Valoracion> valoraciones) {
+        this.valoraciones = valoraciones;
+    }
+
+    public int CountValoracion(int valoracion){
+        int cont = 0;
+        for (Valoracion val :valoraciones) {
+            if (val.getValoracion() == valoracion){
+                cont++;
+            }
+        }
+        return cont;
+    }
+
 
     @Override
     public String toString() {

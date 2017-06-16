@@ -40,7 +40,7 @@ public class Main {
             UserDao.getInstance().create(new User("jhon","jhon","1234",false,false));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Los usuarios estan creados");
         }
 
         initSpark();
@@ -284,15 +284,48 @@ public class Main {
                 }
 
                 Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                ValoracionDao.getInstance().findAll().stream()
+                        .filter(v ->{
+                            if (v.getArticle() !=null){
+                                return v.getArticle().getId().equals(Integer.parseInt(request.params("articleId")));
+                            }else{
+                                return false;
+                            }
+
+                        })
+                        .forEach(v -> {
+                            try {
+                                ValoracionDao.getInstance().destroy(v.getId());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+
                 CommentDao.getInstance().findAll().stream()
                         .filter(c -> c.getArticle().getId().equals(article.getId()))
-                        .forEach(c -> {
+                        .forEach(c -> {ValoracionDao.getInstance().findAll().stream()
+                                .filter(v ->{
+                                    if (v.getComment() !=null){
+                                        return v.getComment().getId().equals(c.getId());
+                                    }else{
+                                        return false;
+                                    }
+
+                                })
+                                .forEach(v -> {
+                                    try {
+                                        ValoracionDao.getInstance().destroy(v.getId());
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                });
                             try {
                                 CommentDao.getInstance().destroy(c.getId());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         });
+
                 try {
                     ArticleDao.getInstance().destroy(article.getId());
                 } catch (Exception e) {
@@ -345,16 +378,50 @@ public class Main {
                 return new ModelAndView(attributes, "article-all-tag.ftl");
             }, freeMarkerEngine);
 
+
+        get("/article/valoracion/:valoracion/comment/:commentId",(request, response) ->{
+            System.out.println("dentro+/"+0);
+            User user = UserDao.getInstance().find(request.session().attribute("user"));
+            Comment comment = CommentDao.getInstance().find(Integer.parseInt(request.params("commentId")));
+            int valoracion = Integer.parseInt(request.params("valoracion"));
+            Map<String, Object> attributes = new HashMap<>();
+            System.out.println("dentro+/"+1);
+            if (user != null) {
+                System.out.println("dentro+/"+2);
+                if (comment.getValoraciones()!= null){
+                    System.out.println("dentro+/"+3);
+                    List<Valoracion> valoracions = comment.getValoraciones().stream()
+                            .filter(val -> val.getUser().getUserName().equals(user.getUserName()))
+                            .collect(Collectors.toList());
+                    if (valoracions != null){
+                        if (!valoracions.isEmpty()){
+                            Valoracion valoraNew = valoracions.get(0);
+                            valoraNew.setValoracion(valoracion);
+                            ValoracionDao.getInstance().edit(valoraNew);
+                            System.out.println("dentro+/"+4);
+                        }else {
+                            System.out.println("dentro+/"+5);
+                            ValoracionDao.getInstance().create(new Valoracion(user,comment,valoracion));
+                        }
+                    }
+                }else {
+                    System.out.println("dentro+/"+6);
+                    ValoracionDao.getInstance().create(new Valoracion(user,comment,valoracion));
+                }
+            }
+            System.out.println("dentro+/"+6);
+            response.redirect("/article/all/0");
+            return new ModelAndView(attributes, "article-all-tag.ftl");
+        }, freeMarkerEngine);
+
     }
 
     public static void valoracionFilter() {
-        before("/article/valoracion/:valoracion/:articleId", (request, response) -> {
-            Map<String, Object> attributes = new HashMap<>();
+        before("/article/valoracion/*", (request, response) -> {
             String userName = request.session().attribute("user");
             if (userName == null) {
                     response.redirect("/login");
             }
-
         });
 
         before("/update/:articleId", (request, response) -> {
@@ -463,8 +530,26 @@ public class Main {
                     response.redirect("/login");
                 }
 
-                CommentDao.getInstance().destroy(Integer.parseInt(request.params("commentId")));
 
+                ValoracionDao.getInstance().findAll().stream()
+                        .filter(v ->{
+                            if (v.getComment() !=null){
+                                return v.getComment().getId().equals(Integer.parseInt(request.params("commentId")));
+                            }else{
+                                return false;
+                            }
+
+                        })
+                        .forEach(v -> {
+                            try {
+                                ValoracionDao.getInstance().destroy(v.getId());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+
+                CommentDao.getInstance().destroy(Integer.parseInt(request.params("commentId")));
+                response.redirect("/article/all/0");
 
                 attributes.put("article", ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId"))));
                 attributes.put("hostUrl", request.host());
