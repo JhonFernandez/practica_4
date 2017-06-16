@@ -27,6 +27,7 @@
             <a class="navbar-brand" href="#">Start Bootstrap</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
@@ -44,7 +45,30 @@
 
 <!-- Page Content -->
 <div class="container">
+    <div class="row">
+        <div class="col-mds-12">
+            <nav aria-label="Page navigation">
+            <#list pages>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <#items as page>
+                        <li><a href="/article/all/${page}">${page}</a></li>
+                    </#items>
 
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </#list>
+            </nav>
+        </div>
+    </div>
     <div class="row">
 
         <!-- Blog Entries Column -->
@@ -75,11 +99,13 @@
                         <h5 style="display: inline;width: auto">tags: </h5>
                             <ul style="display: inline">
                                 <#items as tag>
-                                    <span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></h3>
+                                    <a href="/article/all/tag/${tag.name}"><span class="label label-default">${tag.name}<#--<#sep>,</#sep>--></span></a></h3>
                                 </#items>
                             </ul>
                         </#list>
                     </#if >
+                    <a href="/article/valoracion/1/${article.id}"><span class="glyphicon glyphicon-thumbs-up">${article.CountValoracion(1)}</span></a>
+                    <a href="/article/valoracion/0/${article.id}"><span class="glyphicon glyphicon-thumbs-down">${article.CountValoracion(0)}</span></a>
                     <hr>
                 </#list>
             </#if>

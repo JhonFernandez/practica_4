@@ -9,7 +9,6 @@ import java.util.List;
  * Created by Jhon on 7/6/2017.
  */
 @Entity
-
 public class Article implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +28,10 @@ public class Article implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Tag> tagList;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    private List<Valoracion> valoraciones;
+
 
     public Article() {
     }
@@ -94,6 +97,28 @@ public class Article implements Serializable {
 
     public void setTagList(List<Tag> tagList) {
         this.tagList = tagList;
+    }
+
+    public List<Valoracion> getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(List<Valoracion> valoraciones) {
+        this.valoraciones = valoraciones;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public int CountValoracion(int valoracion){
+        int cont = 0;
+        for (Valoracion val :valoraciones) {
+            if (val.getValoracion() == valoracion){
+                cont++;
+            }
+        }
+        return cont;
     }
 
     @Override

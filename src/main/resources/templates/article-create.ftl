@@ -38,7 +38,7 @@
 <!-- Pager -->
 <ul class="pager">
     <li class="previous">
-        <a href="http://${hostUrl}/article/all">&larr; Volver</a>
+        <a href="http://${hostUrl}/article/all/0">&larr; Volver</a>
     </li>
 </ul>
 

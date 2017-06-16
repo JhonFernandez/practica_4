@@ -20,4 +20,15 @@ public class ArticleDao extends GestionDb<Article,Integer> {
         }
         return instance;
     }
+
+    public int CountValoration(Article article,int valoracion){
+        int cont = 0;
+        for (Valoracion val :article.getValoraciones()) {
+            if (val.getValoracion() == valoracion){
+                cont++;
+            }
+        }
+        return cont;
+    }
+
 }

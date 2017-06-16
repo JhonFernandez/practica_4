@@ -115,7 +115,7 @@
             <!-- Pager -->
             <ul class="pager">
                 <li class="previous">
-                    <a href="/article/all">&larr; Volver</a>
+                    <a href="/article/all/0">&larr; Volver</a>
                 </li>
             </ul>
 

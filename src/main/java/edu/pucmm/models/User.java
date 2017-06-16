@@ -20,6 +20,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<Article> articleList;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Valoracion> valoraciones;
+
     public User() {
     }
 
@@ -77,6 +80,14 @@ public class User implements Serializable {
 
     public void setArticleList(List<Article> articleList) {
         this.articleList = articleList;
+    }
+
+    public List<Valoracion> getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(List<Valoracion> valoraciones) {
+        this.valoraciones = valoraciones;
     }
 
     @Override
