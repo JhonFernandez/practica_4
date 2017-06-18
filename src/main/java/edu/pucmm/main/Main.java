@@ -1,5 +1,6 @@
 package edu.pucmm.main;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import edu.pucmm.controllers.*;
 import edu.pucmm.models.*;
 import edu.pucmm.services.BootStrapServices;
@@ -19,6 +20,7 @@ import static spark.Spark.*;
  * Created by Jhon on 11/6/2017.
  */
 public class Main {
+
     private static Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
     private static FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(configuration);
 
@@ -26,14 +28,8 @@ public class Main {
 
         BootStrapServices.getInstancia().init();
 
-
-        /*try {
-            CommentDao.getInstance().create(new Comment("un comentario genial",
-                    ArticleDao.getInstance().find(164),UserDao.getInstance().findAll().get(0)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         try {
+            UserDao.getInstance().create(new User("admin","admin","admin",true,true));
             UserDao.getInstance().create(new User("master","marlon","1234",true,true));
             UserDao.getInstance().create(new User("vladi","vladi","1234",false,true));
             UserDao.getInstance().create(new User("veronica","veronica","1234",false,true));
@@ -84,7 +80,6 @@ public class Main {
 
     }
 
-
     private static void initSpark() {
 
         port(getHerokuAssignedPort());
@@ -104,7 +99,6 @@ public class Main {
         articlePages();
         tagPages();
         valoracion();
-
     }
 
     public static void loginPages() {
@@ -139,41 +133,20 @@ public class Main {
             commentPages();
             get("/all/:page", (request, response) -> {
                 Map<String, Object> attributes = new HashMap<>();
-                List<Article> articulos = ArticleDao.getInstance().findAll();
+                int pagina = Integer.parseInt(request.params("page"));
+                List<Article> articulos;
                 ArrayList<Integer> pages = new ArrayList<>();
-                int pagina = 0;
-                if (articulos != null) {
-                    Collections.reverse(articulos);
-                    pagina = Integer.parseInt(request.params("page"));
-                    ArrayList<Article> articulosLimit = new ArrayList<>();
-                    System.out.println("pagina: "+pagina+" Articulo size:"+articulos.size());
-                    if (((pagina * 5) + 5) > articulos.size()) {
-                        for (int i = (pagina * 5); i < articulos.size(); i++) {
-                            articulosLimit.add(articulos.get(i));
-                        }
 
-                        System.out.println("Entro if 0 pagina:" + pagina +"");
-                    } else {
-                        for (int i = (pagina * 5); i < ((pagina * 5) + 5); i++) {
-                            articulosLimit.add(articulos.get(i));
-                        }
-                        System.out.println("Entro else 0 pagina:" + pagina);
-                    }
+                articulos = ArticleDao.getInstance().findAll(pagina * 5, (pagina * 5) + 5);
 
-                    System.out.println("Entro if");
-                    attributes.put("articles", articulosLimit);
-
-                } else {
-
-                    attributes.put("articles", articulos);
-                }
 
                 int cont = 0;
-                for (int i = 0; i < articulos.size(); i += 5) {
+                for (int i = 0; i < ArticleDao.getInstance().getCount(); i += 5) {
                     pages.add(cont++);
                 }
-                attributes.put("pages", pages);
 
+                attributes.put("articles", articulos);
+                attributes.put("pages", pages);
                 attributes.put("user", request.session().attribute("user"));
                 attributes.put("hostUrl", request.host());
 
@@ -341,79 +314,127 @@ public class Main {
         });
     }
 
+    public static void articleFilter() {
+        before("/create", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            String userName = request.session().attribute("user");
+            boolean allowed = false;
+
+            if (userName != null) {
+                User user = UserDao.getInstance().find(userName);
+                if (user != null) {
+                    allowed = user.getAuthor() || user.getAdmin();
+                }
+                if (!allowed) {
+                    response.redirect("/login");
+                }
+            } else {
+                response.redirect("/login");
+            }
+
+        });
+
+        before("/update/:articleId", (request, response) -> {
+            String userName = request.session().attribute("user");
+            if (userName != null) {
+                User user = UserDao.getInstance().find(userName);
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                if (!user.getAdmin()) {
+                    if (user.getAuthor()) {
+                        if (!article.getAuthor().equals(user)) {
+                            response.redirect("/login");
+                        }
+                    } else {
+                        response.redirect("/login");
+                    }
+                }
+            } else {
+                response.redirect("/login");
+            }
+
+        });
+
+        before("/delete/:articleId", (request, response) -> {
+            String userName = request.session().attribute("user");
+            if (userName != null) {
+                User user = UserDao.getInstance().find(userName);
+                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
+                if (!user.getAdmin()) {
+                    if (user.getAuthor()) {
+                        if (!article.getAuthor().equals(user)) {
+                            response.redirect("/login");
+                        }
+                    } else {
+                        response.redirect("/login");
+                    }
+                }
+            } else {
+                response.redirect("/login");
+            }
+
+        });
+    }
+
     public static void valoracion(){
         valoracionFilter();
-            get("/article/valoracion/:valoracion/:articleId",(request, response) ->{
-                System.out.println("dentro+/"+0);
+        get("/article/valoracion/:valoracion/:articleId",(request, response) ->{
                 User user = UserDao.getInstance().find(request.session().attribute("user"));
                 Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
                 int valoracion = Integer.parseInt(request.params("valoracion"));
                 Map<String, Object> attributes = new HashMap<>();
-                System.out.println("dentro+/"+1);
                 if (user != null) {
-                    System.out.println("dentro+/"+2);
                     if (article.getValoraciones()!= null){
-                        System.out.println("dentro+/"+3);
                         List<Valoracion> valoracions = article.getValoraciones().stream()
                                 .filter(val -> val.getUser().getUserName().equals(user.getUserName()))
                                 .collect(Collectors.toList());
                         if (valoracions != null){
                             if (!valoracions.isEmpty()){
                                 Valoracion valoraNew = valoracions.get(0);
+                                if (valoraNew.getValoracion() == valoracion){
+                                    valoracion = -1;
+                                }
                                 valoraNew.setValoracion(valoracion);
                                 ValoracionDao.getInstance().edit(valoraNew);
-                                System.out.println("dentro+/"+4);
                             }else {
-                                System.out.println("dentro+/"+5);
                                 ValoracionDao.getInstance().create(new Valoracion(user,article,valoracion));
                             }
                         }
                     }else {
-                        System.out.println("dentro+/"+6);
                         ValoracionDao.getInstance().create(new Valoracion(user,article,valoracion));
                     }
                 }
-                System.out.println("dentro+/"+6);
                 response.redirect("/article/all/0");
                 return new ModelAndView(attributes, "article-all-tag.ftl");
             }, freeMarkerEngine);
-
-
         get("/article/valoracion/:valoracion/comment/:commentId",(request, response) ->{
-            System.out.println("dentro+/"+0);
             User user = UserDao.getInstance().find(request.session().attribute("user"));
             Comment comment = CommentDao.getInstance().find(Integer.parseInt(request.params("commentId")));
             int valoracion = Integer.parseInt(request.params("valoracion"));
             Map<String, Object> attributes = new HashMap<>();
-            System.out.println("dentro+/"+1);
             if (user != null) {
-                System.out.println("dentro+/"+2);
                 if (comment.getValoraciones()!= null){
-                    System.out.println("dentro+/"+3);
                     List<Valoracion> valoracions = comment.getValoraciones().stream()
                             .filter(val -> val.getUser().getUserName().equals(user.getUserName()))
                             .collect(Collectors.toList());
                     if (valoracions != null){
                         if (!valoracions.isEmpty()){
                             Valoracion valoraNew = valoracions.get(0);
+                            if (valoraNew.getValoracion() == valoracion){
+                                valoracion = -1;
+                            }
                             valoraNew.setValoracion(valoracion);
                             ValoracionDao.getInstance().edit(valoraNew);
-                            System.out.println("dentro+/"+4);
                         }else {
-                            System.out.println("dentro+/"+5);
                             ValoracionDao.getInstance().create(new Valoracion(user,comment,valoracion));
                         }
                     }
                 }else {
-                    System.out.println("dentro+/"+6);
                     ValoracionDao.getInstance().create(new Valoracion(user,comment,valoracion));
                 }
             }
-            System.out.println("dentro+/"+6);
             response.redirect("/article/all/0");
             return new ModelAndView(attributes, "article-all-tag.ftl");
         }, freeMarkerEngine);
-
     }
 
     public static void valoracionFilter() {
@@ -560,67 +581,6 @@ public class Main {
         });
     }
 
-    public static void articleFilter() {
-        before("/create", (request, response) -> {
-            Map<String, Object> attributes = new HashMap<>();
-            String userName = request.session().attribute("user");
-            boolean allowed = false;
-
-            if (userName != null) {
-                User user = UserDao.getInstance().find(userName);
-                if (user != null) {
-                    allowed = user.getAuthor() || user.getAdmin();
-                }
-                if (!allowed) {
-                    response.redirect("/login");
-                }
-            } else {
-                response.redirect("/login");
-            }
-
-        });
-
-        before("/update/:articleId", (request, response) -> {
-            String userName = request.session().attribute("user");
-            if (userName != null) {
-                User user = UserDao.getInstance().find(userName);
-                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
-                if (!user.getAdmin()) {
-                    if (user.getAuthor()) {
-                        if (!article.getAuthor().equals(user)) {
-                            response.redirect("/login");
-                        }
-                    } else {
-                        response.redirect("/login");
-                    }
-                }
-            } else {
-                response.redirect("/login");
-            }
-
-        });
-
-        before("/delete/:articleId", (request, response) -> {
-            String userName = request.session().attribute("user");
-            if (userName != null) {
-                User user = UserDao.getInstance().find(userName);
-                Article article = ArticleDao.getInstance().find(Integer.parseInt(request.params("articleId")));
-                if (!user.getAdmin()) {
-                    if (user.getAuthor()) {
-                        if (!article.getAuthor().equals(user)) {
-                            response.redirect("/login");
-                        }
-                    } else {
-                        response.redirect("/login");
-                    }
-                }
-            } else {
-                response.redirect("/login");
-            }
-
-        });
-    }
-
     public static void commentFilter() {
         before("/create/:articleId", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -657,13 +617,12 @@ public class Main {
         });
     }
 
-    static int getHerokuAssignedPort() {
+    public static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
-
 
 }

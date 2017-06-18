@@ -19,13 +19,12 @@ public class Valoracion {
     @ManyToOne
     private Article article;
 
-
     @Nullable
     @ManyToOne
     private Comment comment;
 
 
-    private int valoracion;
+    private int valoracion = -1;
 
 
     public Valoracion() {
