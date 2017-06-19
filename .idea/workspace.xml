@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27113e25-eb92-463f-893b-b1e79e802d5a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.nb-gradle/private/cache/practica_4_20120-d41d8cd98f00b204e9800998ecf8427e" afterPath="$PROJECT_DIR$/.nb-gradle/private/cache/practica_4_20120-d41d8cd98f00b204e9800998ecf8427e" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/controllers/ArticleDao.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/controllers/ArticleDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/main/Main.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Comment.class" afterPath="$PROJECT_DIR$/build/classes/main/edu/pucmm/models/Comment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/templates/article-view.ftl" afterPath="$PROJECT_DIR$/build/resources/main/templates/article-view.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" afterPath="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,7 +59,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
@@ -110,9 +105,48 @@
       <file leaf-file-name="article-all.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="101" column="28" lean-forward="false" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
+            <state relative-caret-position="5">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="27" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article-view.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article-create.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-create.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article-all-tag.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -566,14 +600,14 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Article.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ValoracionDao.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Comment.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/services/GestionDb.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/models/Valoracion.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/controllers/ArticleDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pucmm/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/article-view.ftl" />
       </list>
     </option>
   </component>
@@ -1300,7 +1334,7 @@
       <workItem from="1497566354765" duration="38438000" />
       <workItem from="1497670649652" duration="1920000" />
       <workItem from="1497763306352" duration="2422000" />
-      <workItem from="1497816303490" duration="6949000" />
+      <workItem from="1497816303490" duration="9329000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Acapites del 7 al 10&quot;">
       <created>1497590757500</created>
@@ -1323,11 +1357,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497623547551</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="&quot;Todos los acapites listos y se corrigio lo de la paginacion y lo de permitir al usuario volver a un estado sin like o dislike&quot;">
+      <created>1497829858724</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1497829858724</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123802000" />
+    <option name="totallyTimeSpent" value="126182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1412,7 +1453,8 @@
     <MESSAGE value="&quot;Acapites del 7 al 10&quot;" />
     <MESSAGE value="&quot;Acapites del 8 al 9.5 (solo falta los likes y dislikes a los comentarios)&quot;" />
     <MESSAGE value="&quot;Todos los acapites listos&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Todos los acapites listos&quot;" />
+    <MESSAGE value="&quot;Todos los acapites listos y se corrigio lo de la paginacion y lo de permitir al usuario volver a un estado sin like o dislike&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Todos los acapites listos y se corrigio lo de la paginacion y lo de permitir al usuario volver a un estado sin like o dislike&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1425,7 +1467,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/publico/css/style.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/publico/css/dashboard.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/publico/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1468,7 +1509,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1577,13 +1621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-create.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="40" column="46" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-update.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -1634,25 +1671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1909">
-          <caret line="83" column="20" lean-forward="false" selection-start-line="83" selection-start-column="20" selection-end-line="84" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="81" column="149" lean-forward="false" selection-start-line="81" selection-start-column="149" selection-end-line="81" selection-end-column="149" />
           <folding />
         </state>
       </provider>
@@ -1671,14 +1693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31">
           <caret line="119" column="9" lean-forward="false" selection-start-line="113" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="101" column="28" lean-forward="false" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -1742,6 +1756,55 @@
             <element signature="method#commentFilter#0;class#Main#0" expanded="false" />
             <element signature="e#24835#25294#0" expanded="false" />
             <element signature="method#getHerokuAssignedPort#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="56" column="13" lean-forward="true" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="27" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-all-tag.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-create.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/article-view.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
